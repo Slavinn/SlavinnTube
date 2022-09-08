@@ -18,4 +18,3 @@ Project is created with:
 ### Database scheme
 ![Alt text](db-scheme.png "database scheme")
 
-

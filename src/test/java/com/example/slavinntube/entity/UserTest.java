@@ -10,21 +10,17 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class UserTest {
     User user;
-
     User userTwo;
-
     User userThree;
     UUID id;
     Date currentDate;
     Video newVideo;
-
     VideoLike newVideoLike;
-
     Subscription newSubscription;
 
 
     @BeforeEach
-    public void userBeforeEach() {
+    public void setUp() {
         this.user =  new User("user1", "user1@gmail.com");
         this.userTwo = new User("userTwo","userTwo@gmail.com");
         this.userThree = new User("userThree","userThree@gmail.com");
@@ -34,10 +30,12 @@ class UserTest {
         this.currentDate = new Date();
         String videoUrl = "https://slavinntube.s3.us-west-2.amazonaws.com/SampleVideo_720x480_30mb.mp4";
         String thumbnailUrl = "https://slavinntube.s3.us-west-2.amazonaws.com/thumbnail-sample-30mbpng.png";
-        this.newVideo = new Video("title", "description",videoUrl, thumbnailUrl, this.user.getId(), 200);
+        this.newVideo = new Video("title", "description",videoUrl, thumbnailUrl, this.user, new ArrayList<VideoLike>(), new ArrayList<View>());
         this.newVideo.setId(UUID.randomUUID());
         this.newVideoLike = new VideoLike(1, this.user, this.newVideo);
         this.newSubscription = new Subscription();
+        this.newSubscription.setSubscriberId(this.userTwo.getId());
+        this.newSubscription.setSubscriberToId(this.userThree.getId());
     }
 
 
@@ -124,11 +122,25 @@ class UserTest {
     @Test
     void subscribers() {
         // test getter
+        assertNull(this.userThree.getSubscribers(), "userThree Subscribers List should be null");
 
+        // test setters
+        List<Subscription> subscriptionList = new ArrayList<>(List.of(this.newSubscription));
+        this.userThree.setSubscribers(subscriptionList);
+        assertEquals(this.userTwo.getId(), this.userThree.getSubscribers().get(0).getSubscriberId(),"the subscriber ID in the arraylist index 0 should be userTwo ID");
+        assertNotEquals(this.userThree.getId(), this.userThree.getSubscribers().get(0).getSubscriberId(),"the subscriber ID in the arraylist index 0 should not be userThree ID");
     }
 
     @Test
     void subscribedTo() {
-        fail("This test has yet to be implemented");
+        // test getter
+        assertNull(this.userThree.getSubscribers(), "userTwo subscribedTo List should be null");
+
+        // test setters
+        List<Subscription> subscriptionList = new ArrayList<>(List.of(this.newSubscription));
+        this.userTwo.setSubscribers(subscriptionList);
+        assertEquals(this.userThree.getId(), this.userTwo.getSubscribers().get(0).getSubscriberToId(),"the subscribedTo ID in arraylist index 0 should be userThrees ID");
+        assertNotEquals(this.userTwo.getId(), this.userTwo.getSubscribers().get(0).getSubscriberToId(), "the subscribedTo ID in arraylist index 0 should not be userTwo ID");
+
     }
 }

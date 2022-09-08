@@ -41,28 +41,29 @@ public class Video {
 
     @ManyToOne
     @JoinColumn(name = "userId")
-    private UUID userId;
+    private User user;
 
     @OneToMany
     @JoinColumn(name = "videoLikes")
     private List<VideoLike> videoLikes;
 
+    @OneToMany
     @Column(name = "views")
-    private int views;
+    private List<View> views;
 
     public Video() {
     }
 
     public Video(String title, String description, String url,
-                 String thumbnail, UUID userId, //List<VideoLike> videoLikes,
-                 int views) {
+                 String thumbnail, User userId, List<VideoLike> videoLikes,
+                 List<View> views) {
         this.createdAt = new Date();
         this.title = title;
         this.description = description;
         this.url = url;
         this.thumbnail = thumbnail;
-        this.userId = userId;
-     //   this.videoLikes = videoLikes;
+        this.user = userId;
+        this.videoLikes = videoLikes;
         this.views = views;
     }
 
@@ -115,12 +116,12 @@ public class Video {
         this.thumbnail = thumbnail;
     }
 
-    public UUID getUserId() {
-        return userId;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserId(UUID userId) {
-        this.userId = userId;
+    public void setUser(User userId) {
+        this.user = userId;
     }
 
     public List<VideoLike> getVideoLikes() {
@@ -131,11 +132,11 @@ public class Video {
         this.videoLikes = videoLikes;
     }
 
-    public int getViews() {
+    public List<View> getViews() {
         return views;
     }
 
-    public void setViews(int views) {
+    public void setViews(List<View> views) {
         this.views = views;
     }
 
@@ -148,7 +149,7 @@ public class Video {
                 ", description='" + description + '\'' +
                 ", url='" + url + '\'' +
                 ", thumbnail='" + thumbnail + '\'' +
-                ", userId=" + userId +
+                ", userId=" + user +
                 ", videoLikes=" + videoLikes +
                 ", views=" + views +
                 '}';

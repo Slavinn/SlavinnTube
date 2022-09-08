@@ -26,7 +26,6 @@ public class View {
     @CreationTimestamp
     private Date createdAt;
 
-
     @ManyToOne
     @JoinColumn(name ="userId")
     private User userId;

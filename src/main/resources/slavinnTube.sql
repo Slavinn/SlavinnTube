@@ -13,14 +13,14 @@ use `youtube_clone`;
 drop table if exists `user`;
 create table `user` (
 `id` binary(16) not null,
- `createdAt` datetime not null,
+ `createdAt` datetime,
  `username` varchar(50) default null unique,
  `email` varchar(50) not null unique,
  `avatar` blob default null,
  `cover` blob default null,
  `videos` binary(16) default null,
---  `subscribers` binary(16) not null,
---  `subscribedTo` binary(16) not null,
+ `subscribers` binary(16) not null,
+ `subscribedTo` binary(16) not null,
 -- reference do not uncomment 
 -- foreign key (`subscribers`) references subscriber(`id`);
 -- foreign key (`subscribedTo`) references subscribedTo(`id`);
@@ -63,14 +63,13 @@ primary key(`id`)
 
 drop table if exists `subscription`;
 create table `subscription` (
-`id` binary(16) not null,
-`createdAt` datetime default current_timestamp,
 `subscriberId` binary(16),
 `subscribedToId` binary(16),
 -- reference do not uncomment 
 -- foreign key (`subscriberId`) references user(`id`),
 -- foreign key (`subscribedTo`) references user(`id`),
-primary key(`id`)
+key(`subscriberId`),
+key(`subscribedToId`)
 );
 
 --
@@ -134,22 +133,22 @@ primary key(`id`)
 -- Add foreign keys to table `user`
 --
 
--- alter table `user` add foreign key (`subscribers`) references subscription(`id`);
--- alter table `user` add foreign key (`subscribedTo`) references subscription(`id`);
+alter table `user` add foreign key (`subscribers`) references subscription(`subscriberId`);
+alter table `user` add foreign key (`subscribedTo`) references subscription(`subscribedToId`);
 
 --
 -- Add foreign keys to table `comment`
 --
 
--- alter table `comment` add foreign key (`userId`) references user(`id`);
--- alter table `comment` add foreign key (`videoId`) references video(`id`);
+alter table `comment` add foreign key (`userId`) references user(`id`);
+alter table `comment` add foreign key (`videoId`) references video(`id`);
 
 --
 -- Add foreign keys to table `subscription`
 --
 
--- alter table `subscription` add foreign key (`subscriberId`) references user(`id`);
--- alter table `subscription` add foreign key (`subscribedToId`) references user(`id`);
+alter table `subscription` add foreign key (`subscriberId`) references user(`id`);
+alter table `subscription` add foreign key (`subscribedToId`) references user(`id`);
 
 --
 -- Add foreign keys to table `video`

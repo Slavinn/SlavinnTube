@@ -1,0 +1,35 @@
+INSERT INTO user (id , createdAt, username, email) VALUES
+    (UUID_TO_BIN('1ed4fd17-9adc-4fc6-a61c-a46f69055f2d'), '1998-01-23 12:45:56', 'user1', 'user1@gmail.com'),
+    (UUID_TO_BIN('9de95f63-3192-40a9-84bc-5c2c71e9d8e0'), '2010-12-31 01:15:00', 'user2', 'user2@gmail.com'),
+    (UUID_TO_BIN('2f85758b-4628-49f7-b16b-830d103485af'), '2015-04-03 14:00:45', 'user3', 'user3@gmail.com');
+
+-- INSERT INTO video (title, description, url, thumbnail, userId, videoLikes,  views) VALUES
+--     ("user1 first video upload",
+--      "video about stuff",
+--      "https://videostreaming.com",
+--      "https://picutreofvideo.com",
+--      1,
+--      20,
+--      2000),
+--
+--     ("user1 second video upload",
+--      "video about stuff 2",
+--      "https://videostreaming.com",
+--      "https://picutreofvideo.com",
+--      1,
+--      2,
+--      200),
+--     ("user2 first video upload",
+--      "video about stuff",
+--      "https://videostreaming.com",
+--      "https://picutreofvideo.com",
+--      2,
+--      20,
+--      2000),
+--     ("user3 first video upload",
+--      "video about stuff",
+--      "https://videostreaming.com",
+--      "https://picutreofvideo.com",
+--      3,
+--      20,
+--      2000);

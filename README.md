@@ -13,6 +13,9 @@ Project is created with:
 * Mockito
 * Mysql
 * AWS S3 Bucket
-* Agular
+* Angular
 
 ### Database scheme
+![Alt text](db-scheme.png "database scheme")
+
+

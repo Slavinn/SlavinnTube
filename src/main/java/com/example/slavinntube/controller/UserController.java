@@ -2,8 +2,11 @@ package com.example.slavinntube.controller;
 
 
 import com.example.slavinntube.entity.User;
+import com.example.slavinntube.entity.UserList;
 import com.example.slavinntube.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,12 +25,22 @@ public class UserController {
 
     @GetMapping("/users")
     public List<User> getAllUsers() {
-        return userService.findAll();
+//        UserList userlist = new UserList();
+//        userlist.setUserList();
+        return this.userService.findAll();
     }
 
     @PostMapping("/users")
-    public void createUser(@RequestBody User user) {
-        userService.save(user);
+    public ResponseEntity createUser(@RequestBody User user) {
+        System.out.println(user);
+        User existingUser = userService.getById(user.getId());
+
+        if (existingUser == null) {
+            userService.save(user);
+            return new ResponseEntity(user, HttpStatus.CREATED);
+        } else {
+            return new ResponseEntity(HttpStatus.CONFLICT);
+        }
     }
 
     @PutMapping("/users")

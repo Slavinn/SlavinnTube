@@ -47,6 +47,14 @@ public class VideoLike {
         this.videoId = videoId;
     }
 
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
+    }
+
     public Date getCreatedAt() {
         return createdAt;
     }
@@ -63,5 +71,19 @@ public class VideoLike {
         this.like = like;
     }
 
+    public User getUserId() {
+        return userId;
+    }
 
+    public void setUserId(User userId) {
+        this.userId = userId;
+    }
+
+    public Video getVideoId() {
+        return videoId;
+    }
+
+    public void setVideoId(Video videoId) {
+        this.videoId = videoId;
+    }
 }

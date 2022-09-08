@@ -10,22 +10,34 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class UserTest {
     User user;
+
+    User userTwo;
+
+    User userThree;
     UUID id;
     Date currentDate;
     Video newVideo;
 
     VideoLike newVideoLike;
 
+    Subscription newSubscription;
+
 
     @BeforeEach
     public void userBeforeEach() {
         this.user =  new User("user1", "user1@gmail.com");
+        this.userTwo = new User("userTwo","userTwo@gmail.com");
+        this.userThree = new User("userThree","userThree@gmail.com");
+        this.userTwo.setId(UUID.randomUUID());
+        this.userThree.setId(UUID.randomUUID());
+
         this.currentDate = new Date();
         String videoUrl = "https://slavinntube.s3.us-west-2.amazonaws.com/SampleVideo_720x480_30mb.mp4";
         String thumbnailUrl = "https://slavinntube.s3.us-west-2.amazonaws.com/thumbnail-sample-30mbpng.png";
         this.newVideo = new Video("title", "description",videoUrl, thumbnailUrl, this.user.getId(), 200);
         this.newVideo.setId(UUID.randomUUID());
-        VideoLike newVideoLike = new VideoLike(1, this.user, this.newVideo);
+        this.newVideoLike = new VideoLike(1, this.user, this.newVideo);
+        this.newSubscription = new Subscription();
     }
 
 
@@ -111,7 +123,7 @@ class UserTest {
 
     @Test
     void subscribers() {
-        fail("This test has yet to be implemented");
+        // test getter
 
     }
 

@@ -41,7 +41,7 @@ public class Video {
 
     @ManyToOne
     @JoinColumn(name = "userId")
-    private User userId;
+    private UUID userId;
 
     @OneToMany
     @JoinColumn(name = "videoLikes")
@@ -54,7 +54,7 @@ public class Video {
     }
 
     public Video(String title, String description, String url,
-                 String thumbnail, User userId, //List<VideoLike> videoLikes,
+                 String thumbnail, UUID userId, //List<VideoLike> videoLikes,
                  int views) {
         this.createdAt = new Date();
         this.title = title;
@@ -115,11 +115,11 @@ public class Video {
         this.thumbnail = thumbnail;
     }
 
-    public User getUserId() {
+    public UUID getUserId() {
         return userId;
     }
 
-    public void setUserId(User userId) {
+    public void setUserId(UUID userId) {
         this.userId = userId;
     }
 

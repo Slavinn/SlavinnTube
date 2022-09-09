@@ -12,15 +12,15 @@ public class Subscription {
     private UUID subscriberId;
 
     @Id
-    @Column(name ="subscriberToId")
-    private UUID subscriberToId;
+    @Column(name ="subscribedToId")
+    private UUID subscribedToId;
 
     public Subscription() {
     }
 
-    public Subscription(UUID subscriberId, UUID subscriberToId) {
+    public Subscription(UUID subscriberId, UUID subscribedToId) {
         this.subscriberId = subscriberId;
-        this.subscriberToId = subscriberToId;
+        this.subscribedToId = subscribedToId;
     }
 
 
@@ -32,11 +32,11 @@ public class Subscription {
         this.subscriberId = subscriberId;
     }
 
-    public UUID getSubscriberToId() {
-        return subscriberToId;
+    public UUID getSubscribedToId() {
+        return subscribedToId;
     }
 
-    public void setSubscriberToId(UUID subscriberToId) {
-        this.subscriberToId = subscriberToId;
+    public void setSubscribedToId(UUID subscriberToId) {
+        this.subscribedToId = subscriberToId;
     }
 }

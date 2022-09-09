@@ -35,7 +35,7 @@ class UserTest {
         this.newVideoLike = new VideoLike(1, this.user, this.newVideo);
         this.newSubscription = new Subscription();
         this.newSubscription.setSubscriberId(this.userTwo.getId());
-        this.newSubscription.setSubscriberToId(this.userThree.getId());
+        this.newSubscription.setSubscribedToId(this.userThree.getId());
     }
 
 
@@ -139,8 +139,8 @@ class UserTest {
         // test setters
         List<Subscription> subscriptionList = new ArrayList<>(List.of(this.newSubscription));
         this.userTwo.setSubscribers(subscriptionList);
-        assertEquals(this.userThree.getId(), this.userTwo.getSubscribers().get(0).getSubscriberToId(),"the subscribedTo ID in arraylist index 0 should be userThrees ID");
-        assertNotEquals(this.userTwo.getId(), this.userTwo.getSubscribers().get(0).getSubscriberToId(), "the subscribedTo ID in arraylist index 0 should not be userTwo ID");
+        assertEquals(this.userThree.getId(), this.userTwo.getSubscribers().get(0).getSubscribedToId(),"the subscribedTo ID in arraylist index 0 should be userThrees ID");
+        assertNotEquals(this.userTwo.getId(), this.userTwo.getSubscribers().get(0).getSubscribedToId(), "the subscribedTo ID in arraylist index 0 should not be userTwo ID");
 
     }
 }

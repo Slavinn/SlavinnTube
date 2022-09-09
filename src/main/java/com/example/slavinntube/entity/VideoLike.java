@@ -30,7 +30,7 @@ public class VideoLike {
 
     @ManyToOne
     @JoinColumn(name = "userId")
-    private User userId;
+    private User user;
 
     @ManyToOne
     @JoinColumn(name ="videoId")
@@ -43,7 +43,7 @@ public class VideoLike {
     public VideoLike(int like, User userId, Video videoId) {
         this.createdAt = new Date();
         this.like = like;
-        this.userId = userId;
+        this.user = userId;
         this.videoId = videoId;
     }
 
@@ -71,12 +71,12 @@ public class VideoLike {
         this.like = like;
     }
 
-    public User getUserId() {
-        return userId;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserId(User userId) {
-        this.userId = userId;
+    public void setUser(User userId) {
+        this.user = userId;
     }
 
     public Video getVideoId() {

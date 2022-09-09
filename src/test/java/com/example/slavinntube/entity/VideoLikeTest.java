@@ -64,25 +64,44 @@ class VideoLikeTest {
 
     @Test
     void getLike() {
+        assertNotNull(this.videoLikeOne.getLike(), "Like should not be null");
+        assertEquals(this.like, this.videoLikeOne.getLike(), "like should be equal to this.like");
     }
 
     @Test
     void setLike() {
+        int newLike = 2;
+        this.videoLikeOne.setLike(newLike);
+        assertEquals(newLike, this.videoLikeOne.getLike(), "Like should be equal to newLike set value");
     }
 
     @Test
     void getUserId() {
+        assertNotNull(this.videoLikeOne.getUser(),"UserId should not be null");
+        assertEquals(this.user, this.videoLikeOne.getUser(), " user should equal this.user");
     }
 
     @Test
     void setUserId() {
+        User newUser = new User();
+        newUser.setId(UUID.randomUUID());
+        this.videoLikeOne.setUser(newUser);
+        assertNotEquals(this.user, this.videoLikeOne.getUser(), "user should not be set to the original user value");
+        assertEquals(newUser, this.videoLikeOne.getUser(),"user should be set to the newUser value");
     }
 
     @Test
     void getVideoId() {
+        assertNotNull(this.videoLikeOne.getVideoId(),"VideoID should not be null");
+        assertEquals(this.video, this.videoLikeOne.getVideoId(), "VideoId should equal this.video");
     }
 
     @Test
     void setVideoId() {
+        Video newVideo = new Video();
+        newVideo.setId(UUID.randomUUID());
+        this.videoLikeOne.setVideoId(newVideo);
+        assertNotEquals(this.video, this.videoLikeOne.getVideoId(), "video should not be set to the original video value");
+        assertEquals(newVideo, this.videoLikeOne.getVideoId(), "video should be set the newVideo value");
     }
 }

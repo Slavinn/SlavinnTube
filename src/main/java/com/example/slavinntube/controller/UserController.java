@@ -2,7 +2,6 @@ package com.example.slavinntube.controller;
 
 
 import com.example.slavinntube.entity.User;
-import com.example.slavinntube.entity.UserList;
 import com.example.slavinntube.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

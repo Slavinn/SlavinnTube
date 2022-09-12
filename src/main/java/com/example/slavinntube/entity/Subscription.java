@@ -1,5 +1,7 @@
 package com.example.slavinntube.entity;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.*;
 
 import java.util.UUID;
@@ -7,36 +9,53 @@ import java.util.UUID;
 @Entity
 @Table(name = "subscription")
 public class Subscription {
-    @Id
-    @Column(name ="subscriberId")
-    private UUID subscriberId;
 
     @Id
-    @Column(name ="subscribedToId")
-    private UUID subscribedToId;
+    @GeneratedValue(generator = "UUID")
+    @GenericGenerator(
+            name = "UUID",
+            strategy = "org.hibernate.id.UUIDGenerator"
+    )
+    @Column(name = "id", updatable = false, nullable = false)
+    private UUID id;
+
+    @ManyToOne
+    @JoinColumn(name ="subscriber")
+    private User subscriber;
+
+    @ManyToOne
+    @JoinColumn(name ="subscribedTo")
+    private User subscribedTo;
 
     public Subscription() {
     }
 
-    public Subscription(UUID subscriberId, UUID subscribedToId) {
-        this.subscriberId = subscriberId;
-        this.subscribedToId = subscribedToId;
+    public Subscription(User subscriber, User subscribedTo) {
+        this.subscriber = subscriber;
+        this.subscribedTo = subscribedTo;
     }
 
-
-    public UUID getSubscriberId() {
-        return subscriberId;
+    public UUID getId() {
+        return id;
     }
 
-    public void setSubscriberId(UUID subscriberId) {
-        this.subscriberId = subscriberId;
+    public void setId(UUID id) {
+        this.id = id;
     }
 
-    public UUID getSubscribedToId() {
-        return subscribedToId;
+    public User getSubscriber() {
+        return subscriber;
     }
 
-    public void setSubscribedToId(UUID subscriberToId) {
-        this.subscribedToId = subscriberToId;
+    public void setSubscriber(User subscriberId) {
+        this.subscriber = subscriberId;
+    }
+
+    public User getSubscribedTo() {
+        return subscribedTo;
+    }
+
+    public void setSubscribedTo(User subscriberToId) {
+        this.subscribedTo = subscriberToId;
     }
 }

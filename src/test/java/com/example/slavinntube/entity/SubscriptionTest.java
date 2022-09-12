@@ -9,51 +9,55 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class SubscriptionTest {
 
-    UUID subscriberId;
-    UUID subscribedToId;
+    User subscriber;
+    User subscribedTo;
 
     Subscription subscriptionOne;
 
     @BeforeEach
     void setUp() {
-        this.subscriberId = UUID.randomUUID();
-        this.subscribedToId = UUID.randomUUID();
+        this.subscriber = new User();
+        this.subscriber.setId(UUID.randomUUID());
+        this.subscribedTo = new User();
+        this.subscribedTo.setId(UUID.randomUUID());
 
         this.subscriptionOne = new Subscription();
 
-        this.subscriptionOne.setSubscriberId(this.subscriberId);
-        this.subscriptionOne.setSubscribedToId(this.subscribedToId);
+        this.subscriptionOne.setSubscriber(this.subscriber);
+        this.subscriptionOne.setSubscribedTo(this.subscribedTo);
     }
 
     @Test
     void getSubscriberId() {
-        assertNotNull(this.subscriptionOne.getSubscriberId(), "subscriberId should not be null");
-        assertEquals(this.subscriberId, this.subscriptionOne.getSubscriberId(), "subscriptionOne id should be set to subscriberId");
+        assertNotNull(this.subscriptionOne.getSubscriber(), "subscriberId should not be null");
+        assertEquals(this.subscriber, this.subscriptionOne.getSubscriber(), "subscriptionOne id should be set to subscriberId");
     }
 
     @Test
     void setSubscriberId() {
-        UUID newSubscriberId = UUID.randomUUID();
+        User newSubscriber = new User();
+        newSubscriber.setId(UUID.randomUUID());
 
-        this.subscriptionOne.setSubscriberId(newSubscriberId);
+        this.subscriptionOne.setSubscriber(newSubscriber);
 
-        assertNotEquals(this.subscriberId, this.subscriptionOne.getSubscriberId(), "subscriptionOne subscriberId should not be set to old id");
-        assertEquals(newSubscriberId, this.subscriptionOne.getSubscriberId(), "subscriptionOne subscriberId should be set to newSubscriberId");
+        assertNotEquals(this.subscriber, this.subscriptionOne.getSubscriber(), "subscriptionOne subscriberId should not be set to old id");
+        assertEquals(newSubscriber, this.subscriptionOne.getSubscriber(), "subscriptionOne subscriberId should be set to newSubscriberId");
     }
 
     @Test
     void getSubscriberToId() {
-        assertNotNull(this.subscriptionOne.getSubscribedToId(), "subscriptionOne subscriberId should not be null");
-        assertEquals(this.subscribedToId, this.subscriptionOne.getSubscribedToId(), "subscriptionOne subscribedToId should be set to subscriberId");
+        assertNotNull(this.subscriptionOne.getSubscribedTo(), "subscriptionOne subscriberId should not be null");
+        assertEquals(this.subscribedTo, this.subscriptionOne.getSubscribedTo(), "subscriptionOne subscribedToId should be set to subscriberId");
     }
 
     @Test
     void setSubscriberToId() {
-        UUID newSubscribedToId = UUID.randomUUID();
+        User newSubscribedTo =  new User();
+        newSubscribedTo.setId(UUID.randomUUID());
 
-        this.subscriptionOne.setSubscribedToId(newSubscribedToId);
+        this.subscriptionOne.setSubscribedTo(newSubscribedTo);
 
-        assertNotEquals(this.subscribedToId, this.subscriptionOne.getSubscribedToId(), "subscriptionOne subscribedToId should not bee equal to old id");
-        assertEquals(newSubscribedToId, this.subscriptionOne.getSubscribedToId(), "subscriptionOne subscribedToId should be equal to newSubscribedToId");
+        assertNotEquals(this.subscribedTo, this.subscriptionOne.getSubscribedTo(), "subscriptionOne subscribedToId should not bee equal to old id");
+        assertEquals(newSubscribedTo, this.subscriptionOne.getSubscribedTo(), "subscriptionOne subscribedToId should be equal to newSubscribedToId");
     }
 }

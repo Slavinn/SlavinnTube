@@ -34,8 +34,8 @@ class UserTest {
         this.newVideo.setId(UUID.randomUUID());
         this.newVideoLike = new VideoLike(1, this.user, this.newVideo);
         this.newSubscription = new Subscription();
-        this.newSubscription.setSubscriberId(this.userTwo.getId());
-        this.newSubscription.setSubscribedToId(this.userThree.getId());
+        this.newSubscription.setSubscriber(this.userTwo);
+        this.newSubscription.setSubscribedTo(this.userThree);
     }
 
 
@@ -126,9 +126,9 @@ class UserTest {
         // test setters
         List<Subscription> subscriptionList = new ArrayList<>(List.of(this.newSubscription));
         this.userThree.setSubscribers(subscriptionList);
-        assertNotEquals(this.userThree.getId(), this.userThree.getSubscribers().get(0).getSubscriberId(),"the subscriber ID in the arraylist index 0 should not be userThree ID");
+        assertNotEquals(this.userThree, this.userThree.getSubscribers().get(0).getSubscriber(),"the subscriber ID in the arraylist index 0 should not be userThree ID");
 
-        assertEquals(this.userTwo.getId(), this.userThree.getSubscribers().get(0).getSubscriberId(),"the subscriber ID in the arraylist index 0 should be userTwo ID");
+        assertEquals(this.userTwo, this.userThree.getSubscribers().get(0).getSubscriber(),"the subscriber ID in the arraylist index 0 should be userTwo ID");
     }
 
     @Test
@@ -139,9 +139,9 @@ class UserTest {
         // test setters
         List<Subscription> subscriptionList = new ArrayList<>(List.of(this.newSubscription));
         this.userTwo.setSubscribers(subscriptionList);
-        assertNotEquals(this.userTwo.getId(), this.userTwo.getSubscribers().get(0).getSubscribedToId(), "the subscribedTo ID in arraylist index 0 should not be userTwo ID");
+        assertNotEquals(this.userTwo, this.userTwo.getSubscribers().get(0).getSubscribedTo(), "the subscribedTo ID in arraylist index 0 should not be userTwo ID");
 
-        assertEquals(this.userThree.getId(), this.userTwo.getSubscribers().get(0).getSubscribedToId(),"the subscribedTo ID in arraylist index 0 should be userThrees ID");
+        assertEquals(this.userThree, this.userTwo.getSubscribers().get(0).getSubscribedTo(),"the subscribedTo ID in arraylist index 0 should be userThrees ID");
 
     }
 }

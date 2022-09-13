@@ -5,7 +5,6 @@ import org.hibernate.annotations.GenericGenerator;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.*;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -22,7 +21,7 @@ public class User {
             name = "UUID",
             strategy = "org.hibernate.id.UUIDGenerator"
     )
-    @Column(name = "id", columnDefinition = "binary(16)", updatable = false, nullable = false)
+    @Column(name = "id", updatable = false, nullable = false)
     private UUID id;
 
     // Current time non updatable
@@ -49,7 +48,7 @@ public class User {
 
     /// List of all videos a user has uploaded
     @OneToMany
-    @Column(name = "userId")
+    @Column(name = "videos")
     private List<Video> videos;
 
     // List of all liked videos by a user
@@ -59,20 +58,21 @@ public class User {
 
     // List of all users follower current user
     @OneToMany
-    @Column(name ="subscribers")
+    @JoinColumn(name ="subscriber")
     private List<Subscription> subscribers;
 
 
-    // List of all users current user follows
+//     List of all users current user follows
     @OneToMany
-    @Column(name = "subscribedTo")
-    private  List<Subscription> subscribedTo;
+    @Column(name = "subscribed")
+    private  List<Subscription> subscribed;
 
     public User() {
     }
 
     public User(String username, String email) {
-        this.createdAt = new Date();
+//        this.id = UUID.randomUUID();
+//        this.createdAt = new Date();
         this.username = username;
         this.email = email;
     }
@@ -149,12 +149,12 @@ public class User {
         this.subscribers = subscribers;
     }
 
-    public List<Subscription> getSubscribedTo() {
-        return subscribedTo;
+    public List<Subscription> getSubscribed() {
+        return subscribed;
     }
 
-    public void setSubscribedTo(List<Subscription> subscribedTo) {
-        this.subscribedTo = subscribedTo;
+    public void setSubscribed(List<Subscription> subscribed) {
+        this.subscribed = subscribed;
     }
 
     @Override
@@ -168,7 +168,7 @@ public class User {
                 ", cover=" + cover +
                 ", videos=" + videos +
                 ", subscribers=" + subscribers +
-                ", subscribedTo=" + subscribedTo +
+                ", subscribedTo=" + subscribed +
                 '}';
     }
 }

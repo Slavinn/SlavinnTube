@@ -5,22 +5,32 @@ import com.example.slavinntube.repository.UserRepository;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
+import org.mockito.junit.jupiter.MockitoSettings;
+import org.mockito.quality.Strictness;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.TestPropertySource;
 
+import java.util.Optional;
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.BDDMockito.given;
 
-@TestPropertySource("/application.properties")
-@SpringBootTest
+//@TestPropertySource("/application.properties")
+@ExtendWith(MockitoExtension.class)
+@MockitoSettings(strictness = Strictness.LENIENT)
 class UserServiceImplTest {
 
-    @Autowired
+    @Mock
     private UserRepository userRepository;
-    @Autowired
-    private UserService userService;
+    @InjectMocks
+    private UserServiceImpl userService;
     private User userOne;
 
     @BeforeEach
@@ -40,12 +50,7 @@ class UserServiceImplTest {
 
     @Test
     void save() {
-
-        userService.save(this.userOne);
-
-        User getCreatedUser = userService.getById(this.userOne.getId());
-
-        assertEquals(this.userOne.getId(), getCreatedUser.getId(), "get By Id");
+        given(userRepository.save(userOne)).willReturn(userOne);
     }
 
     @Test
@@ -56,10 +61,5 @@ class UserServiceImplTest {
     @Test
     void deleteById() {
         fail("Test not implemented");
-    }
-
-    @AfterEach
-    void takeDown() {
-        userService.deleteById(this.userOne.getId());
     }
 }

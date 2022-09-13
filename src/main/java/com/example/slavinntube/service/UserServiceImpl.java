@@ -7,14 +7,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
 @Transactional
 public class UserServiceImpl implements UserService {
 
-
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
     @Autowired
     public UserServiceImpl(UserRepository userRepository) {
@@ -22,23 +22,32 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<User> findAll() {
+    public List<User> getAllUsers() {
         return userRepository.findAll();
     }
 
     @Override
-    public User getById(UUID user_id) {
-        return userRepository.getReferenceById(user_id);
+    public Optional<User> getById(UUID user_id) {
+        return Optional.of(userRepository.getReferenceById(user_id));
     }
 
     @Override
-    public void save(User user) {
-        userRepository.save(user);
+    public Optional<User> getByEmail(String email) {
+        return Optional.ofNullable(userRepository.getByEmail(email));
     }
 
     @Override
-    public void update(User user) {
-        userRepository.save(user);
+    public Optional<User> getByUsername(String username) {
+        return Optional.ofNullable(userRepository.getByUsername(username));
+    }
+    @Override
+    public User saveUser(User user) {
+        return userRepository.save(user);
+    }
+
+    @Override
+    public User updateUser(User user) {
+        return userRepository.save(user);
     }
 
     @Override

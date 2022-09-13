@@ -4,6 +4,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -24,7 +25,7 @@ public class Subscription {
     private User subscriber;
 
     @ManyToOne
-    @JoinColumn(name ="subscribedTo")
+    @JoinColumn(name ="subscribed")
     private User subscribedTo;
 
     public Subscription() {
@@ -47,15 +48,15 @@ public class Subscription {
         return subscriber;
     }
 
-    public void setSubscriber(User subscriberId) {
-        this.subscriber = subscriberId;
+    public void setSubscriber(User subscriber) {
+        this.subscriber = subscriber;
     }
 
     public User getSubscribedTo() {
         return subscribedTo;
     }
 
-    public void setSubscribedTo(User subscriberToId) {
-        this.subscribedTo = subscriberToId;
+    public void setSubscribedTo(User subscriberTo) {
+        this.subscribedTo = subscriberTo;
     }
 }

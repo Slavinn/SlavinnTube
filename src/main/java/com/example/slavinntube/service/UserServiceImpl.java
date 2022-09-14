@@ -27,8 +27,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Optional<User> getById(UUID user_id) {
-        return Optional.of(userRepository.getReferenceById(user_id));
+    public Optional<User> getById(UUID userId) {
+        return Optional.of(userRepository.getReferenceById(userId));
     }
 
     @Override
@@ -51,7 +51,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void deleteById(UUID user_id) {
-        userRepository.deleteById(user_id);
+    public void deleteById(UUID userId) {
+        userRepository.deleteById(userId);
     }
 }

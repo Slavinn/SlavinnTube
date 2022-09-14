@@ -9,12 +9,12 @@ import java.util.UUID;
 
 public interface UserService {
     List<User> getAllUsers();
-    Optional<User> getById(UUID user_id);
+    Optional<User> getById(UUID userId);
     Optional<User> getByEmail(String email);
     Optional<User> getByUsername(String username);
     User saveUser(User user);
     User updateUser(User user);
-    void deleteById(UUID user_id);
+    void deleteById(UUID userId);
 
 
 

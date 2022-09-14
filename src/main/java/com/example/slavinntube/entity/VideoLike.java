@@ -34,17 +34,17 @@ public class VideoLike {
 
     @ManyToOne
     @JoinColumn(name ="videoId")
-    private Video videoId;
+    private Video video;
 
 
     public VideoLike() {
     }
 
-    public VideoLike(int like, User userId, Video videoId) {
+    public VideoLike(int like, User user, Video video) {
         this.createdAt = new Date();
         this.like = like;
-        this.user = userId;
-        this.videoId = videoId;
+        this.user = user;
+        this.video = video;
     }
 
     public UUID getId() {
@@ -79,11 +79,11 @@ public class VideoLike {
         this.user = userId;
     }
 
-    public Video getVideoId() {
-        return videoId;
+    public Video getVideo() {
+        return video;
     }
 
-    public void setVideoId(Video videoId) {
-        this.videoId = videoId;
+    public void setVideo(Video videoId) {
+        this.video = videoId;
     }
 }

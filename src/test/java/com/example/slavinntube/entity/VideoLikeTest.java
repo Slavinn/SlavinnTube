@@ -92,16 +92,16 @@ class VideoLikeTest {
 
     @Test
     void getVideoId() {
-        assertNotNull(this.videoLikeOne.getVideoId(),"VideoID should not be null");
-        assertEquals(this.video, this.videoLikeOne.getVideoId(), "VideoId should equal this.video");
+        assertNotNull(this.videoLikeOne.getVideo(),"VideoID should not be null");
+        assertEquals(this.video, this.videoLikeOne.getVideo(), "VideoId should equal this.video");
     }
 
     @Test
     void setVideoId() {
         Video newVideo = new Video();
         newVideo.setId(UUID.randomUUID());
-        this.videoLikeOne.setVideoId(newVideo);
-        assertNotEquals(this.video, this.videoLikeOne.getVideoId(), "video should not be set to the original video value");
-        assertEquals(newVideo, this.videoLikeOne.getVideoId(), "video should be set the newVideo value");
+        this.videoLikeOne.setVideo(newVideo);
+        assertNotEquals(this.video, this.videoLikeOne.getVideo(), "video should not be set to the original video value");
+        assertEquals(newVideo, this.videoLikeOne.getVideo(), "video should be set the newVideo value");
     }
 }

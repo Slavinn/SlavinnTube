@@ -34,13 +34,13 @@ public class VideoServiceImpl implements VideoService {
     }
 
     @Override
-    public void saveVideo(Video video) {
-        videoRepository.save(video);
+    public Video saveVideo(Video video) {
+        return videoRepository.save(video);
     }
 
     @Override
-    public void updateVideo(Video video) {
-        videoRepository.save(video);
+    public Video updateVideo(Video video) {
+        return videoRepository.save(video);
     }
 
     @Override

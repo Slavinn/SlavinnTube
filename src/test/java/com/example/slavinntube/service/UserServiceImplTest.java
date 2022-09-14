@@ -80,7 +80,7 @@ class UserServiceImplTest {
 
     @Test
     void saveUser() {
-        given(userRepository.getById(userOne.getId()))
+        given(userRepository.getReferenceById(userOne.getId()))
                 .willReturn(null);
 
         given(userRepository.save(userOne)).willReturn(userOne);

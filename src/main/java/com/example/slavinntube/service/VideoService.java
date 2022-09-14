@@ -12,9 +12,9 @@ public interface VideoService {
 
     Optional<Video> getById(UUID video_id);
 
-     void saveVideo(Video video);
+     Video saveVideo(Video video);
 
-     void updateVideo(Video video);
+     Video updateVideo(Video video);
 
     void deleteById(UUID video_id);
 

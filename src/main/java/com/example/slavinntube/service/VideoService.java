@@ -3,18 +3,19 @@ package com.example.slavinntube.service;
 import com.example.slavinntube.entity.Video;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 public interface VideoService {
 
-    public List<Video> findAll();
+    List<Video> getAllVideos();
 
-    public Video getBYId(UUID video_id);
+    Optional<Video> getById(UUID video_id);
 
-    public void save(Video video);
+     void saveVideo(Video video);
 
-    public void update(Video video);
+     void updateVideo(Video video);
 
-    public void deleteById(UUID video_id);
+    void deleteById(UUID video_id);
 
 }

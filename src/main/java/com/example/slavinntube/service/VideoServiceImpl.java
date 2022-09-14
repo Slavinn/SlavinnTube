@@ -5,15 +5,18 @@ import com.example.slavinntube.entity.Video;
 import com.example.slavinntube.repository.VideoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
+@Transactional
 public class VideoServiceImpl implements VideoService {
 
 
-    private VideoRepository videoRepository;
+    private final VideoRepository videoRepository;
 
     @Autowired
     public VideoServiceImpl(VideoRepository videoRepository) {
@@ -21,22 +24,22 @@ public class VideoServiceImpl implements VideoService {
     }
 
     @Override
-    public List<Video> findAll() {
+    public List<Video> getAllVideos() {
         return videoRepository.findAll();
     }
 
     @Override
-    public Video getBYId(UUID video_id) {
-        return videoRepository.getReferenceById(video_id);
+    public Optional<Video> getById(UUID video_id) {
+        return Optional.of(videoRepository.getReferenceById(video_id));
     }
 
     @Override
-    public void save(Video video) {
+    public void saveVideo(Video video) {
         videoRepository.save(video);
     }
 
     @Override
-    public void update(Video video) {
+    public void updateVideo(Video video) {
         videoRepository.save(video);
     }
 

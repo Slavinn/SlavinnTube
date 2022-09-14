@@ -22,18 +22,18 @@ public class VideoController {
 
     @GetMapping("/videos")
     public List<Video> getVideos() {
-        return videoService.findAll();
+        return videoService.getAllVideos();
     }
 
     @PostMapping("/videos")
     public void  saveVideo(@RequestBody Video video) {
-        videoService.save(video);
+        videoService.saveVideo(video);
 
     }
 
     @PutMapping("/videos/")
     public void updateVideo(@RequestBody Video video) {
-        videoService.update(video);
+        videoService.updateVideo(video);
     }
 
     @DeleteMapping("/videos/{video_id}")

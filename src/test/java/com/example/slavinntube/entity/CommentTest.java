@@ -16,15 +16,19 @@ class CommentTest {
 
     String text;
 
-    UUID userId;
+    User userId;
 
-    UUID videoId;
+    Video videoId;
 
     @BeforeEach
     void setUp() {
         this.text = "First comment for video";
-        this.userId = UUID.randomUUID();
-        this.videoId = UUID.randomUUID();
+        this.userId = new User();
+        this.userId.setId(UUID.randomUUID());
+
+        this.videoId = new Video();
+        this.videoId.setId(UUID.randomUUID());
+
         this.id = UUID.randomUUID();
 
         this.commentOne = new Comment(text,userId, videoId);
@@ -77,33 +81,35 @@ class CommentTest {
 
     @Test
     void getUserId() {
-        assertNotNull(this.commentOne.getUserId(), "userid should not be null");
-        assertEquals(this.userId, this.commentOne.getUserId(),  "userid should be set to this.userid");
+        assertNotNull(this.commentOne.getUser(), "userid should not be null");
+        assertEquals(this.userId, this.commentOne.getUser(),  "userid should be set to this.userid");
     }
 
     @Test
     void setUserId() {
-        UUID newUserId = UUID.randomUUID();
+        User newUser = new User();
+        newUser.setId(UUID.randomUUID());
 
-        this.commentOne.setUserId(newUserId);
+        this.commentOne.setUser(newUser);
 
-        assertNotEquals(this.userId, this.commentOne.getUserId(),"userid should not be set to orignal id");
-        assertEquals(newUserId, this.commentOne.getUserId(), "userid should be set to newUserId");
+        assertNotEquals(this.userId, this.commentOne.getUser(),"userid should not be set to original id");
+        assertEquals(newUser, this.commentOne.getUser(), "userid should be set to newUserId");
     }
 
     @Test
     void getVideoId() {
-        assertNotNull(this.commentOne.getVideoId(), "videoId should not be null");
-        assertEquals(this.videoId, this.commentOne.getVideoId(), "videoId should be set to original value declared in constructor");
+        assertNotNull(this.commentOne.getVideo(), "videoId should not be null");
+        assertEquals(this.videoId, this.commentOne.getVideo(), "videoId should be set to original value declared in constructor");
     }
 
     @Test
     void setVideoId() {
-        UUID newVideoId = UUID.randomUUID();
+        Video newVideo = new Video();
+        newVideo.setId(UUID.randomUUID());
 
-        this.commentOne.setVideoId(newVideoId);
+        this.commentOne.setVideo(newVideo);
 
-        assertNotEquals(this.videoId, this.commentOne.getVideoId(), "videoId should not be set to original id");
-        assertEquals(newVideoId, this.commentOne.getVideoId(), "videoId should be set to newVideoId");
+        assertNotEquals(this.videoId.getId(), this.commentOne.getVideo().getId(), "videoId should not be set to original id");
+        assertEquals(newVideo, this.commentOne.getVideo(), "videoId should be set to newVideoId");
     }
 }

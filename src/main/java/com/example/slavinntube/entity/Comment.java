@@ -30,20 +30,20 @@ public class Comment {
 
     @ManyToOne
     @Column(name = "userId")
-    private UUID userId;
+    private User user;
 
     @ManyToOne
     @Column(name = "videoId")
-    private UUID videoId;
+    private Video video;
 
     public Comment() {
     }
 
-    public Comment(String text, UUID userId, UUID videoId) {
+    public Comment(String text, User user, Video video) {
         this.createdAt = new Date();
         this.text = text;
-        this.userId = userId;
-        this.videoId = videoId;
+        this.user = user;
+        this.video = video;
     }
 
 
@@ -71,19 +71,19 @@ public class Comment {
         this.text = text;
     }
 
-    public UUID getUserId() {
-        return userId;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserId(UUID userId) {
-        this.userId = userId;
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    public UUID getVideoId() {
-        return videoId;
+    public Video getVideo() {
+        return video;
     }
 
-    public void setVideoId(UUID videoId) {
-        this.videoId = videoId;
+    public void setVideo(Video video) {
+        this.video = video;
     }
 }

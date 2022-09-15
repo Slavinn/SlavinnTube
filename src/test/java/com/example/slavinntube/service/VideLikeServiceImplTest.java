@@ -4,6 +4,7 @@ import com.example.slavinntube.entity.User;
 import com.example.slavinntube.entity.Video;
 import com.example.slavinntube.entity.VideoLike;
 import com.example.slavinntube.repository.VideoLikeRepository;
+import com.example.slavinntube.service.VideoLikeServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -76,7 +77,6 @@ class VideoLikeServiceImplTest {
         VideoLike savedVideoLike = videoLikeService.getById(videoLike.getId()).orElse(null);
 
         assertNotNull(savedVideoLike);
-
     }
 
     @Test

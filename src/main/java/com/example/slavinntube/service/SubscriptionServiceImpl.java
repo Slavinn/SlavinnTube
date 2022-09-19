@@ -28,8 +28,8 @@ public class SubscriptionServiceImpl implements SubscriptionService{
     }
 
     @Override
-    public List<Subscription> getSubscriptionBySubscribedId(UUID subscribedId) {
-        return subscriptionRepository.getSubscriptionBySubscribedId(subscribedId);
+    public List<Subscription> getSubscriptionBySubscribedToId(UUID subscribedId) {
+        return subscriptionRepository.getSubscriptionBySubscribedToId(subscribedId);
     }
 
     @Override

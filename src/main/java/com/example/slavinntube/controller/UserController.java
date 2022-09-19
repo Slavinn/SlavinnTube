@@ -39,7 +39,7 @@ public class UserController {
         Optional<User> existingUsername = userService.getByUsername(user.getUsername());
 
         // throw exception if either email or username was found in database.
-        if (existingUsername.isEmpty() || existingEmail.isEmpty()) {
+        if (existingUsername.isPresent() || existingEmail.isPresent()) {
             // return message and conflict response
             throw new UserExistsException("UserName or Email already Exists");
         } else {

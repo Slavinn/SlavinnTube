@@ -47,7 +47,7 @@ class ViewServiceImplTest {
     @Test
     void getViewsByVideoId() {
         UUID viewVideoId = viewOne.getVideoId().getId();
-        given(viewRepository.getByVideoId(viewVideoId)).willReturn((List.of(viewOne)));
+        given(viewRepository.getViewsByVideoId(viewVideoId)).willReturn((List.of(viewOne)));
 
         List<View> viewList = viewService.getViewsByVideoId(viewVideoId);
 
@@ -60,7 +60,7 @@ class ViewServiceImplTest {
     void getViewsByUserId() {
         UUID viewUserId = viewOne.getUserId().getId();
 
-        given(viewRepository.getBYUserId(viewUserId)).willReturn(List.of(viewOne));
+        given(viewRepository.getViewsByUserId(viewUserId)).willReturn(List.of(viewOne));
 
         List<View> viewList = viewService.getViewsByUserId(viewUserId);
 
@@ -100,8 +100,8 @@ class ViewServiceImplTest {
 
         View updatedView = viewService.updateView(viewOne);
 
-        assertThat(viewOne.getVideoId()).isEqualTo(newVideo);
-        assertThat(viewOne.getUserId()).isEqualTo(newUser);
+        assertThat(updatedView.getVideoId()).isEqualTo(newVideo);
+        assertThat(updatedView.getUserId()).isEqualTo(newUser);
     }
 
     @Test

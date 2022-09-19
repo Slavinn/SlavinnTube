@@ -2,45 +2,70 @@ package com.example.slavinntube.controller;
 
 import com.example.slavinntube.repository.UserRepository;
 import com.example.slavinntube.service.UserService;
-import org.json.JSONException;
+import com.example.slavinntube.service.UserServiceImpl;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.http.*;
-import org.springframework.test.context.jdbc.Sql;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
-import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.MvcResult;
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.mock.web.MockHttpServletRequest;
+import org.springframework.test.context.TestPropertySource;
+import org.springframework.transaction.annotation.Transactional;
+
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
+@TestPropertySource("/application-test.properties")
 @AutoConfigureMockMvc
 @SpringBootTest
-public class UserControllerTest {
-    @MockBean
-    private MockMvc mockMvc;
+@Transactional
+class UserControllerTest {
+
+    private static MockHttpServletRequest request;
+
+    @PersistenceContext
+    private EntityManager entityManager;
+
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
+
+    @Mock
+    UserServiceImpl userService;
+
+    @Autowired
+    UserRepository userRepository;
+
+    @Value("${sql.script.create.users}")
+    private String sqlAddUsers;
+
+    @Value("${sql.script.delete.users}")
+    private String sqlDeleteUsers;
 
 
-    @Test
-    void getAllUsers() throws Exception {
-        MvcResult results = mockMvc.perform(MockMvcRequestBuilders
-                .get("/api/v1/users")
-                .accept(MediaType.APPLICATION_JSON))
-                .andDo(print())
-                .andExpect(status().isOk()).andReturn();
-
+    @BeforeEach
+    void setUp() {
+        jdbcTemplate.execute(sqlAddUsers);
     }
 
-//    @Sql({"classpath:slavinnTube.sql", "classpath:data.sql"})
+    @AfterEach
+    void tearDown() {
+        jdbcTemplate.execute(sqlDeleteUsers);
+    }
+
     @Test
-    void createUser() throws JSONException {
+    void getAllUsers() {
+    }
+
+    @Test
+    void createUser() {
     }
 
     @Test
@@ -49,5 +74,17 @@ public class UserControllerTest {
 
     @Test
     void deleteUser() {
+    }
+
+    @Test
+    void handleException() {
+    }
+
+    @Test
+    void testHandleException() {
+    }
+
+    @Test
+    void testHandleException1() {
     }
 }

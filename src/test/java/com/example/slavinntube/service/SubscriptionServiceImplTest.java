@@ -58,9 +58,9 @@ class SubscriptionServiceImplTest {
     void getSubscriptionBySubscribedId() {
         UUID subscribedId = subscriptionOne.getSubscribedTo().getId();
 
-        given(subscriptionRepository.getSubscriptionBySubscribedId(subscribedId)).willReturn(List.of(subscriptionOne));
+        given(subscriptionRepository.getSubscriptionBySubscribedToId(subscribedId)).willReturn(List.of(subscriptionOne));
 
-        List<Subscription> subscriptionList = subscriptionService.getSubscriptionBySubscribedId(subscribedId);
+        List<Subscription> subscriptionList = subscriptionService.getSubscriptionBySubscribedToId(subscribedId);
 
         assertNotNull(subscriptionList);
         assertThat(subscriptionList.size()).isEqualTo(1);

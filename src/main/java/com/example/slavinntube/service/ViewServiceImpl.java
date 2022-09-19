@@ -24,12 +24,12 @@ public class ViewServiceImpl implements ViewService {
 
     @Override
     public List<View> getViewsByVideoId(UUID videoId) {
-        return viewRepository.getByVideoId(videoId);
+        return viewRepository.getViewsByVideoId(videoId);
     }
 
     @Override
     public List<View> getViewsByUserId(UUID userId) {
-        return viewRepository.getBYUserId(userId);
+        return viewRepository.getViewsByUserId(userId);
     }
 
     @Override

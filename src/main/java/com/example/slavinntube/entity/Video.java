@@ -44,7 +44,7 @@ public class Video {
     private User user;
 
     @OneToMany
-    @JoinColumn(name = "videoLikes")
+    @Column(name = "videoLikes")
     private List<VideoLike> videoLikes;
 
     @OneToMany

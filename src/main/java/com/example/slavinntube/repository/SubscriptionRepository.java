@@ -9,5 +9,5 @@ import java.util.UUID;
 public interface SubscriptionRepository extends JpaRepository<Subscription, UUID> {
 
     List<Subscription> getSubscriptionsBySubscriberId(UUID subscriberId);
-    List<Subscription> getSubscriptionBySubscribedId(UUID subscribedId);
+    List<Subscription> getSubscriptionBySubscribedToId(UUID subscribedId);
 }

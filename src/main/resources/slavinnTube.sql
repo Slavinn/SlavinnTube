@@ -85,8 +85,8 @@ create table `video` (
 `url` varchar(250) not null,
 `thumbnail` blob not null,
 `userId` binary(16) not null,
-`videoLikes` int default 0,
-`views` int default 0,
+`videoLikes` binary(16) default null,
+`views` binary(16) default null,
 -- reference do not uncomment 
 -- foreign key (`userId`) references user(`id`),
 primary key(`id`)
@@ -134,6 +134,8 @@ primary key(`id`)
 
 alter table `user` add foreign key (`subscriber`) references subscription(`subscriber`);
 alter table `user` add foreign key (`subscribed`) references subscription(`subscribed`);
+alter table `user` add foreign key (`videos`) references video(`id`);
+
 
 --
 -- Add foreign keys to table `comment`
@@ -154,6 +156,8 @@ alter table `subscription` add foreign key (`subscribed`) references user(`id`);
 --
 
 alter table `video` add foreign key (`userId`) references user(`id`);
+alter table `video` add foreign key (`videoLikes`) references videoLike(`id`);
+alter table `video` add foreign key (`views`) references view(`id`);
 
 --
 -- Add foreign keys to table `videoLike`

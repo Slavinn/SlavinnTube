@@ -62,7 +62,7 @@ class CommentServiceImplTest {
         given(commentRepository.getALllCommentsByUserId(userId))
                 .willReturn(List.of(commentOne));
 
-        List<Comment> commentList = commentService.getALllCommentsByUserId(userId);
+        List<Comment> commentList = commentService.getAllCommentsByUserId(userId);
 
         assertNotNull(commentList);
         assertThat(commentList.size()).isEqualTo(1);

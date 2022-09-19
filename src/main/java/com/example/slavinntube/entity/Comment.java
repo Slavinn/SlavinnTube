@@ -2,13 +2,12 @@ package com.example.slavinntube.entity;
 
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.util.Date;
 import java.util.UUID;
 
+@Entity
+@Table(name = "comment")
 public class Comment {
 
     @Id
@@ -29,11 +28,11 @@ public class Comment {
 
 
     @ManyToOne
-    @Column(name = "userId")
+    @JoinColumn(name = "userId")
     private User user;
 
     @ManyToOne
-    @Column(name = "videoId")
+    @JoinColumn(name = "videoId")
     private Video video;
 
     public Comment() {

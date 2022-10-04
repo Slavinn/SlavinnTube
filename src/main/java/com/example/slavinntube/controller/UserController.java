@@ -2,7 +2,7 @@ package com.example.slavinntube.controller;
 
 
 import com.example.slavinntube.entity.User;
-import com.example.slavinntube.exeptionhandling.user.UserErrorResponse;
+import com.example.slavinntube.exeptionhandling.ErrorResponse;
 import com.example.slavinntube.exeptionhandling.user.UserExistsException;
 import com.example.slavinntube.exeptionhandling.user.UserNotFoundException;
 import com.example.slavinntube.service.UserService;
@@ -51,36 +51,37 @@ public class UserController {
     }
 
     @PutMapping("/users")
-    public ResponseEntity<User> updatedUser(@RequestBody User user) throws UserExistsException {
+    public ResponseEntity<User> updatedUserEmail(@RequestBody User user) throws UserExistsException {
         // check if email already exists
         Optional<User> existingEmail = userService.getByEmail(user.getEmail());
         // check if username already exists
         Optional<User> existingUsername = userService.getByUsername(user.getUsername());
 
-        // throw exception if either email or username was found in database.
-        if (existingUsername.isEmpty() || existingEmail.isEmpty()) {
+        // throw exception if username doesn't exist in database or the email address already does.
+        if (existingUsername.isEmpty() || existingEmail.isPresent()) {
             // return message and conflict response
             throw new UserExistsException("UserName or Email already Exists");
         } else {
             // save to database and return user, created response
+            // this needs to be fixed in the future so it doesn't null out fields that arnt being updated
             userService.updateUser(user);
             return new ResponseEntity<>(user, HttpStatus.OK);
         }
     }
 
     @DeleteMapping("/users/{user_id}")
-    public ResponseEntity deleteUser(@PathVariable UUID user_id) {
+    public ResponseEntity deleteUser(@PathVariable UUID user_id)  throws UserExistsException{
         Optional<User> existingUser = userService.getById(user_id);
         if (existingUser.isEmpty()) {
             throw new UserNotFoundException("User was not found - ");
         }
         userService.deleteById(user_id);
-        return new ResponseEntity(HttpStatus.NO_CONTENT);
+        return new ResponseEntity(HttpStatus.OK);
     }
 
     @ExceptionHandler
-    public ResponseEntity<UserErrorResponse> handleException(UserNotFoundException exc) {
-        UserErrorResponse error = new UserErrorResponse();
+    public ResponseEntity<ErrorResponse> handleException(UserNotFoundException exc) {
+        ErrorResponse error = new ErrorResponse();
 
         error.setStatus(HttpStatus.NOT_FOUND.value());
         error.setMessage(exc.getMessage());
@@ -90,8 +91,8 @@ public class UserController {
     }
 
     @ExceptionHandler
-    public ResponseEntity<UserErrorResponse> handleException(UserExistsException exc) {
-        UserErrorResponse error = new UserErrorResponse();
+    public ResponseEntity<ErrorResponse> handleException(UserExistsException exc) {
+        ErrorResponse error = new ErrorResponse();
 
         error.setStatus(HttpStatus.CONFLICT.value());
         error.setMessage(exc.getMessage());
@@ -101,8 +102,8 @@ public class UserController {
     }
 
     @ExceptionHandler
-    public ResponseEntity<UserErrorResponse> handleException(Exception exc) {
-        UserErrorResponse error = new UserErrorResponse();
+    public ResponseEntity<ErrorResponse> handleException(Exception exc) {
+        ErrorResponse error = new ErrorResponse();
 
         error.setStatus(HttpStatus.BAD_REQUEST.value());
         error.setMessage(exc.getMessage());

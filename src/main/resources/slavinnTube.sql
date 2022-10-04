@@ -14,8 +14,8 @@ drop table if exists `user`;
 create table `user` (
 `id` binary(16) not null,
  `createdAt` datetime,
- `username` varchar(50) not null unique,
- `email` varchar(50) not null unique,
+ `username` varchar(50) not null,
+ `email` varchar(50) not null,
  `avatar` varchar(255) default null,
  `cover` varchar(255) default null,
  `videos` binary(16) default null,

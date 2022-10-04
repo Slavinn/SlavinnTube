@@ -96,29 +96,6 @@ class UserTest {
     }
 
     @Test
-    void videosGetterSetterTest() {
-        // test getter
-        assertNull(this.user.getVideos(), "Videos should return null");
-
-        // test setter
-        List<Video> videoList = new ArrayList<>(List.of(this.newVideo));
-
-        this.user.setVideos(videoList);
-        assertArrayEquals(videoList.toArray(), this.user.getVideos().toArray(), "Videos should return the newly generated List<Video>");
-    }
-
-    @Test
-    void videoLikesGetterSetterTest() {
-        // test getter
-        assertNull(this.newVideoLike.getId(), "VideoLike should return null");
-
-        // test setter
-        List<VideoLike> videoLikeList = new ArrayList<>(List.of(this.newVideoLike));
-        this.user.setVideoLikes(videoLikeList);
-        assertArrayEquals(videoLikeList.toArray(), this.user.getVideoLikes().toArray(), "VideoLike should return the newly generated List<VideoLike>");
-    }
-
-    @Test
     void subscribers() {
         // test getter
         assertNull(this.userThree.getSubscribers(), "userThree Subscribers List should be null");

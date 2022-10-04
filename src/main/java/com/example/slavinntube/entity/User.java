@@ -30,10 +30,10 @@ public class User {
     @CreationTimestamp
     private Date createdAt;
 
-    @Column(name = "username")
+    @Column(name = "username", nullable = false)
     private String username;
 
-    @Column(name = "email")
+    @Column(name = "email", nullable = false)
     private String email;
 
 

@@ -1,8 +1,9 @@
 package com.example.slavinntube.service;
 
-import com.example.slavinntube.entity.Subscription;
-import com.example.slavinntube.entity.User;
-import com.example.slavinntube.repository.SubscriptionRepository;
+import com.example.slavinntube.Subscription.entity.Subscription;
+import com.example.slavinntube.Subscription.service.Impl.SubscriptionServiceImpl;
+import com.example.slavinntube.User.entity.User;
+import com.example.slavinntube.Subscription.repository.SubscriptionRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

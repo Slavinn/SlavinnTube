@@ -1,13 +1,13 @@
 package com.example.slavinntube.service;
 
-import com.example.slavinntube.entity.User;
-import com.example.slavinntube.repository.UserRepository;
+import com.example.slavinntube.User.entity.User;
+import com.example.slavinntube.User.repository.UserRepository;
+import com.example.slavinntube.User.service.Impl.UserServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.mockito.junit.jupiter.MockitoSettings;
 import org.mockito.quality.Strictness;

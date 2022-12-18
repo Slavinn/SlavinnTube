@@ -1,5 +1,8 @@
 package com.example.slavinntube.entity;
 
+import com.example.slavinntube.User.entity.User;
+import com.example.slavinntube.Video.entity.Video;
+import com.example.slavinntube.View.entity.View;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

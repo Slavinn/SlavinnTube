@@ -1,9 +1,10 @@
 package com.example.slavinntube.service;
 
-import com.example.slavinntube.entity.Comment;
-import com.example.slavinntube.entity.User;
-import com.example.slavinntube.entity.Video;
-import com.example.slavinntube.repository.CommentRepository;
+import com.example.slavinntube.Comment.entity.Comment;
+import com.example.slavinntube.Comment.entity.Impl.CommentServiceImpl;
+import com.example.slavinntube.User.entity.User;
+import com.example.slavinntube.Video.entity.Video;
+import com.example.slavinntube.Comment.repository.CommentRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

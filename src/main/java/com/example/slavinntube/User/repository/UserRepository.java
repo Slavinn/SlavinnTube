@@ -1,0 +1,12 @@
+package com.example.slavinntube.User.repository;
+
+import com.example.slavinntube.User.entity.User;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import java.util.UUID;
+
+public interface UserRepository extends JpaRepository<User, UUID> {
+
+    User getByEmail(String email);
+    User getByUsername(String username);
+}

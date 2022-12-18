@@ -1,7 +1,8 @@
 package com.example.slavinntube.service;
 
-import com.example.slavinntube.entity.Video;
-import com.example.slavinntube.repository.VideoRepository;
+import com.example.slavinntube.Video.entity.Video;
+import com.example.slavinntube.VideoLike.repository.VideoRepository;
+import com.example.slavinntube.VideoLike.service.Impl.VideoServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

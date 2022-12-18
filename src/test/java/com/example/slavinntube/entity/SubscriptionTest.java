@@ -1,5 +1,7 @@
 package com.example.slavinntube.entity;
 
+import com.example.slavinntube.Subscription.entity.Subscription;
+import com.example.slavinntube.User.entity.User;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

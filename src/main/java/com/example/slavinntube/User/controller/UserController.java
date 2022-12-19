@@ -1,7 +1,7 @@
 package com.example.slavinntube.User.controller;
 
 
-import com.example.slavinntube.User.entity.User;
+import com.example.slavinntube.User.entity.Impl.UserImpl;
 import com.example.slavinntube.exeptionhandling.ErrorResponse;
 import com.example.slavinntube.exeptionhandling.user.UserExistsException;
 import com.example.slavinntube.exeptionhandling.user.UserNotFoundException;
@@ -26,17 +26,30 @@ public class UserController {
         this.userService = userService;
     }
 
+    /**
+     * TODO
+     * Get all users associated with current USER
+     *
+     * @return List of all Users associated with current USER
+     */
     @GetMapping("/users")
-    public ResponseEntity<List<User>> getAllUsers() {
+    public ResponseEntity<List<UserImpl>> getAllUsers() {
         return new ResponseEntity<>(this.userService.getAllUsers(), HttpStatus.OK);
     }
 
+    /**
+     * Creates a new User and stores in database
+     *
+     * @param user User
+     * @return response entity of use with status code CREATED
+     * @throws UserExistsException Throws UserExistsException status code CONFLICT
+     */
     @PostMapping("/users")
-    public ResponseEntity<User> createUser(@RequestBody User user) throws UserExistsException {
-        // check if email already exists
-        Optional<User> existingEmail = userService.getByEmail(user.getEmail());
+    public ResponseEntity<UserImpl> createUser(@RequestBody UserImpl user) throws UserExistsException {
+        // check if email already
+        Optional<UserImpl> existingEmail = userService.getByEmail(user.getEmail());
         // check if username already exists
-        Optional<User> existingUsername = userService.getByUsername(user.getUsername());
+        Optional<UserImpl> existingUsername = userService.getByUsername(user.getUsername());
 
         // throw exception if either email or username was found in database.
         if (existingUsername.isPresent() || existingEmail.isPresent()) {
@@ -51,11 +64,11 @@ public class UserController {
     }
 
     @PutMapping("/users")
-    public ResponseEntity<User> updatedUserEmail(@RequestBody User user) throws UserExistsException {
+    public ResponseEntity<UserImpl> updatedUserEmail(@RequestBody UserImpl user) throws UserExistsException {
         // check if email already exists
-        Optional<User> existingEmail = userService.getByEmail(user.getEmail());
+        Optional<UserImpl> existingEmail = userService.getByEmail(user.getEmail());
         // check if username already exists
-        Optional<User> existingUsername = userService.getByUsername(user.getUsername());
+        Optional<UserImpl> existingUsername = userService.getByUsername(user.getUsername());
 
         // throw exception if username doesn't exist in database or the email address already does.
         if (existingUsername.isEmpty() || existingEmail.isPresent()) {
@@ -71,7 +84,7 @@ public class UserController {
 
     @DeleteMapping("/users/{user_id}")
     public ResponseEntity deleteUser(@PathVariable UUID user_id)  throws UserExistsException{
-        Optional<User> existingUser = userService.getById(user_id);
+        Optional<UserImpl> existingUser = userService.getById(user_id);
         if (existingUser.isEmpty()) {
             throw new UserNotFoundException("User was not found - ");
         }

@@ -1,8 +1,7 @@
-package com.example.slavinntube.entity;
+package com.example.slavinntube.View.entity;
 
-import com.example.slavinntube.User.entity.User;
+import com.example.slavinntube.User.entity.Impl.UserImpl;
 import com.example.slavinntube.Video.entity.Video;
-import com.example.slavinntube.View.entity.View;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -15,12 +14,12 @@ class ViewTest {
     UUID id;
 
     View view;
-    User userOne;
+    UserImpl userOne;
     Video videoOne;
 
     @BeforeEach
     void setUp() {
-        this.userOne = new User();
+        this.userOne = new UserImpl();
         this.userOne.setId(UUID.randomUUID());
 
         this.videoOne = new Video();
@@ -71,7 +70,7 @@ class ViewTest {
 
     @Test
     void setUserId() {
-        User newUser = new User();
+        UserImpl newUser = new UserImpl();
         newUser.setId(UUID.randomUUID());
 
         this.view.setUserId(newUser);

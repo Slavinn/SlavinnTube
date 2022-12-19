@@ -1,6 +1,6 @@
 package com.example.slavinntube.Comment.entity;
 
-import com.example.slavinntube.User.entity.User;
+import com.example.slavinntube.User.entity.Impl.UserImpl;
 import com.example.slavinntube.Video.entity.Video;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -31,7 +31,7 @@ public class Comment {
 
     @ManyToOne
     @JoinColumn(name = "userId")
-    private User user;
+    private UserImpl user;
 
     @ManyToOne
     @JoinColumn(name = "videoId")
@@ -40,7 +40,7 @@ public class Comment {
     public Comment() {
     }
 
-    public Comment(String text, User user, Video video) {
+    public Comment(String text, UserImpl user, Video video) {
         this.createdAt = new Date();
         this.text = text;
         this.user = user;
@@ -72,11 +72,11 @@ public class Comment {
         this.text = text;
     }
 
-    public User getUser() {
+    public UserImpl getUser() {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser(UserImpl user) {
         this.user = user;
     }
 

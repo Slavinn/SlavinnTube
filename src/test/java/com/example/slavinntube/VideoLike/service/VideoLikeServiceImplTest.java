@@ -1,6 +1,6 @@
-package com.example.slavinntube.service;
+package com.example.slavinntube.VideoLike.service;
 
-import com.example.slavinntube.User.entity.User;
+import com.example.slavinntube.User.entity.Impl.UserImpl;
 import com.example.slavinntube.Video.entity.Video;
 import com.example.slavinntube.Video.service.Impl.VideoLikeServiceImpl;
 import com.example.slavinntube.VideoLike.entity.VideoLike;
@@ -41,7 +41,7 @@ class VideoLikeServiceImplTest {
     void setUp() {
         this.videoLike = new VideoLike();
         videoLike.setVideo(new Video());
-        videoLike.setUser(new User());
+        videoLike.setUser(new UserImpl());
     }
 
     @Test

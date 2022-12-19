@@ -1,8 +1,7 @@
-package com.example.slavinntube.entity;
+package com.example.slavinntube.VideoLike.entity;
 
-import com.example.slavinntube.User.entity.User;
+import com.example.slavinntube.User.entity.Impl.UserImpl;
 import com.example.slavinntube.Video.entity.Video;
-import com.example.slavinntube.VideoLike.entity.VideoLike;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -14,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class VideoLikeTest {
     UUID id;
     int like;
-    User user;
+    UserImpl user;
     Video video;
     VideoLike videoLikeOne;
 
@@ -26,7 +25,7 @@ class VideoLikeTest {
         this.id = UUID.randomUUID();
         this.like = 1;
         this.createdAt = new Date();
-        this.user = new User();
+        this.user = new UserImpl();
         user.setId(UUID.randomUUID());
 
         this.video = new Video();
@@ -86,7 +85,7 @@ class VideoLikeTest {
 
     @Test
     void setUserId() {
-        User newUser = new User();
+        UserImpl newUser = new UserImpl();
         newUser.setId(UUID.randomUUID());
         this.videoLikeOne.setUser(newUser);
         assertNotEquals(this.user, this.videoLikeOne.getUser(), "user should not be set to the original user value");

@@ -1,6 +1,6 @@
-package com.example.slavinntube.service;
+package com.example.slavinntube.View.service;
 
-import com.example.slavinntube.User.entity.User;
+import com.example.slavinntube.User.entity.Impl.UserImpl;
 import com.example.slavinntube.Video.entity.Video;
 import com.example.slavinntube.View.entity.View;
 import com.example.slavinntube.View.repository.ViewRepository;
@@ -42,7 +42,7 @@ class ViewServiceImplTest {
     void setUp() {
         this.viewOne = new View();
         this.viewOne.setVideoId(new Video());
-        this.viewOne.setUserId(new User());
+        this.viewOne.setUserId(new UserImpl());
     }
 
     @Test
@@ -96,7 +96,7 @@ class ViewServiceImplTest {
         Video newVideo = new Video();
         viewOne.setVideoId(newVideo);
 
-        User newUser = new User();
+        UserImpl newUser = new UserImpl();
         viewOne.setUserId(newUser);
 
         View updatedView = viewService.updateView(viewOne);

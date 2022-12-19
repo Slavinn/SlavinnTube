@@ -1,8 +1,8 @@
-package com.example.slavinntube.entity;
+package com.example.slavinntube.User.entity;
 
 
 import com.example.slavinntube.Subscription.entity.Subscription;
-import com.example.slavinntube.User.entity.User;
+import com.example.slavinntube.User.entity.Impl.UserImpl;
 import com.example.slavinntube.Video.entity.Video;
 import com.example.slavinntube.VideoLike.entity.VideoLike;
 import com.example.slavinntube.View.entity.View;
@@ -11,10 +11,12 @@ import org.junit.jupiter.api.Test;
 
 import java.util.*;
 
-class UserTest {
-    User user;
-    User userTwo;
-    User userThree;
+import static org.junit.jupiter.api.Assertions.*;
+
+class UserImplTest {
+    UserImpl user;
+    UserImpl userTwo;
+    UserImpl userThree;
     UUID id;
     Date currentDate;
     Video newVideo;
@@ -24,9 +26,9 @@ class UserTest {
 
     @BeforeEach
     public void setUp() {
-        this.user =  new User("user1", "user1@gmail.com");
-        this.userTwo = new User("userTwo","userTwo@gmail.com");
-        this.userThree = new User("userThree","userThree@gmail.com");
+        this.user =  new UserImpl("user1", "user1@gmail.com");
+        this.userTwo = new UserImpl("userTwo","userTwo@gmail.com");
+        this.userThree = new UserImpl("userThree","userThree@gmail.com");
         this.userTwo.setId(UUID.randomUUID());
         this.userThree.setId(UUID.randomUUID());
 

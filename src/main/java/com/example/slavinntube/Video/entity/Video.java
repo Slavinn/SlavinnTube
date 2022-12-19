@@ -1,7 +1,7 @@
 package com.example.slavinntube.Video.entity;
 
 
-import com.example.slavinntube.User.entity.User;
+import com.example.slavinntube.User.entity.Impl.UserImpl;
 import com.example.slavinntube.VideoLike.entity.VideoLike;
 import com.example.slavinntube.View.entity.View;
 import org.hibernate.annotations.CreationTimestamp;
@@ -44,7 +44,7 @@ public class Video {
 
     @ManyToOne
     @JoinColumn(name = "userId")
-    private User user;
+    private UserImpl user;
 
     @OneToMany
     @Column(name = "videoLikes")
@@ -58,7 +58,7 @@ public class Video {
     }
 
     public Video(String title, String description, String url,
-                 String thumbnail, User userId, List<VideoLike> videoLikes,
+                 String thumbnail, UserImpl userId, List<VideoLike> videoLikes,
                  List<View> views) {
         this.createdAt = new Date();
         this.title = title;
@@ -119,11 +119,11 @@ public class Video {
         this.thumbnail = thumbnail;
     }
 
-    public User getUser() {
+    public UserImpl getUser() {
         return user;
     }
 
-    public void setUser(User userId) {
+    public void setUser(UserImpl userId) {
         this.user = userId;
     }
 

@@ -1,7 +1,7 @@
 package com.example.slavinntube.View.entity;
 
 
-import com.example.slavinntube.User.entity.User;
+import com.example.slavinntube.User.entity.Impl.UserImpl;
 import com.example.slavinntube.Video.entity.Video;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
@@ -30,7 +30,7 @@ public class View {
 
     @ManyToOne
     @JoinColumn(name ="userId")
-    private User userId;
+    private UserImpl userId;
 
 
     @ManyToOne
@@ -41,7 +41,7 @@ public class View {
     public View() {
     }
 
-    public View(User userId, Video videoId) {
+    public View(UserImpl userId, Video videoId) {
         this.createdAt = new Date();
         this.userId = userId;
         this.videoId = videoId;
@@ -63,11 +63,11 @@ public class View {
         this.createdAt = createdAt;
     }
 
-    public User getUserId() {
+    public UserImpl getUserId() {
         return userId;
     }
 
-    public void setUserId(User userId) {
+    public void setUserId(UserImpl userId) {
         this.userId = userId;
     }
 

@@ -1,7 +1,6 @@
-package com.example.slavinntube.entity;
+package com.example.slavinntube.Video.entity;
 
-import com.example.slavinntube.User.entity.User;
-import com.example.slavinntube.Video.entity.Video;
+import com.example.slavinntube.User.entity.Impl.UserImpl;
 import com.example.slavinntube.VideoLike.entity.VideoLike;
 import com.example.slavinntube.View.entity.View;
 import org.junit.jupiter.api.BeforeEach;
@@ -15,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class VideoTest {
 
-    User userOne;
+    UserImpl userOne;
 
     Video videoOne;
     String title = "SampleVideo_720x480_30mb.mp4";
@@ -32,7 +31,7 @@ class VideoTest {
     @BeforeEach
     void setUp() {
         // create user test object
-        this.userOne = new User();
+        this.userOne = new UserImpl();
         this.userOne.setId(UUID.randomUUID());
 
         // create video test object
@@ -157,7 +156,7 @@ class VideoTest {
     void setVideoLikes() {
         assertNotNull(this.videoOne.getVideoLikes(), "videoLikes list should not be null");
 
-        User newUser = new User();
+        UserImpl newUser = new UserImpl();
         newUser.setId(UUID.randomUUID());
 
         Video newVideo = new Video();
@@ -178,7 +177,7 @@ class VideoTest {
     void setViews() {
         assertNotNull(this.videoOne.getViews(), "views list should not be null");
 
-        User newUser = new User();
+        UserImpl newUser = new UserImpl();
         newUser.setId(UUID.randomUUID());
 
         Video newVideo = new Video();

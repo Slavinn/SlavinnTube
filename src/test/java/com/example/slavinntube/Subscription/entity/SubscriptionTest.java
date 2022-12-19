@@ -1,7 +1,6 @@
-package com.example.slavinntube.entity;
+package com.example.slavinntube.Subscription.entity;
 
-import com.example.slavinntube.Subscription.entity.Subscription;
-import com.example.slavinntube.User.entity.User;
+import com.example.slavinntube.User.entity.Impl.UserImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -11,16 +10,16 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class SubscriptionTest {
 
-    User subscriber;
-    User subscribedTo;
+    UserImpl subscriber;
+    UserImpl subscribedTo;
 
     Subscription subscriptionOne;
 
     @BeforeEach
     void setUp() {
-        this.subscriber = new User();
+        this.subscriber = new UserImpl();
         this.subscriber.setId(UUID.randomUUID());
-        this.subscribedTo = new User();
+        this.subscribedTo = new UserImpl();
         this.subscribedTo.setId(UUID.randomUUID());
 
         this.subscriptionOne = new Subscription();
@@ -37,7 +36,7 @@ class SubscriptionTest {
 
     @Test
     void setSubscriberId() {
-        User newSubscriber = new User();
+        UserImpl newSubscriber = new UserImpl();
         newSubscriber.setId(UUID.randomUUID());
 
         this.subscriptionOne.setSubscriber(newSubscriber);
@@ -54,7 +53,7 @@ class SubscriptionTest {
 
     @Test
     void setSubscriberToId() {
-        User newSubscribedTo =  new User();
+        UserImpl newSubscribedTo =  new UserImpl();
         newSubscribedTo.setId(UUID.randomUUID());
 
         this.subscriptionOne.setSubscribedTo(newSubscribedTo);

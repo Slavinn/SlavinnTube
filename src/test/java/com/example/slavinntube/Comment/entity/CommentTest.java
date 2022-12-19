@@ -1,7 +1,6 @@
-package com.example.slavinntube.entity;
+package com.example.slavinntube.Comment.entity;
 
-import com.example.slavinntube.Comment.entity.Comment;
-import com.example.slavinntube.User.entity.User;
+import com.example.slavinntube.User.entity.Impl.UserImpl;
 import com.example.slavinntube.Video.entity.Video;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -19,14 +18,14 @@ class CommentTest {
 
     String text;
 
-    User userId;
+    UserImpl userId;
 
     Video videoId;
 
     @BeforeEach
     void setUp() {
         this.text = "First comment for video";
-        this.userId = new User();
+        this.userId = new UserImpl();
         this.userId.setId(UUID.randomUUID());
 
         this.videoId = new Video();
@@ -90,7 +89,7 @@ class CommentTest {
 
     @Test
     void setUserId() {
-        User newUser = new User();
+        UserImpl newUser = new UserImpl();
         newUser.setId(UUID.randomUUID());
 
         this.commentOne.setUser(newUser);

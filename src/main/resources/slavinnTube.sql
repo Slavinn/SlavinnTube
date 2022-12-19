@@ -93,7 +93,7 @@ primary key(`id`)
 );
 
 --
--- Table structure for table `videolike`
+-- Table structure for table `videoLike`
 --
 
 drop table if exists `videoLike`;

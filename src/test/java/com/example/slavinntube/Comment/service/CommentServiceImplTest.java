@@ -1,8 +1,8 @@
-package com.example.slavinntube.service;
+package com.example.slavinntube.Comment.service;
 
 import com.example.slavinntube.Comment.entity.Comment;
 import com.example.slavinntube.Comment.entity.Impl.CommentServiceImpl;
-import com.example.slavinntube.User.entity.User;
+import com.example.slavinntube.User.entity.Impl.UserImpl;
 import com.example.slavinntube.Video.entity.Video;
 import com.example.slavinntube.Comment.repository.CommentRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -39,7 +39,7 @@ class CommentServiceImplTest {
     @BeforeEach
     void setUp() {
         this.commentOne = new Comment();
-        this.commentOne.setUser(new User());
+        this.commentOne.setUser(new UserImpl());
         this.commentOne.setVideo(new Video());
     }
 

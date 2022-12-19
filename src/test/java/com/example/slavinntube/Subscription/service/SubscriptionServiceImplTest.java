@@ -1,8 +1,8 @@
-package com.example.slavinntube.service;
+package com.example.slavinntube.Subscription.service;
 
 import com.example.slavinntube.Subscription.entity.Subscription;
 import com.example.slavinntube.Subscription.service.Impl.SubscriptionServiceImpl;
-import com.example.slavinntube.User.entity.User;
+import com.example.slavinntube.User.entity.Impl.UserImpl;
 import com.example.slavinntube.Subscription.repository.SubscriptionRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -39,7 +39,7 @@ class SubscriptionServiceImplTest {
 
     @BeforeEach
     void setUp() {
-        subscriptionOne = new Subscription(new User(), new User());
+        subscriptionOne = new Subscription(new UserImpl(), new UserImpl());
     }
 
     @Test
@@ -91,8 +91,8 @@ class SubscriptionServiceImplTest {
     void updateSubscription() {
         given(subscriptionRepository.getReferenceById(subscriptionOne.getId())).willReturn(subscriptionOne);
 
-        User newSubscriber = new User();
-        User newSubscribed = new User();
+        UserImpl newSubscriber = new UserImpl();
+        UserImpl newSubscribed = new UserImpl();
         subscriptionOne.setSubscriber(newSubscriber);
         subscriptionOne.setSubscribedTo(newSubscribed);
 

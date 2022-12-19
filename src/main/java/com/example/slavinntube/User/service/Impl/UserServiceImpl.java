@@ -1,6 +1,6 @@
 package com.example.slavinntube.User.service.Impl;
 
-import com.example.slavinntube.User.entity.User;
+import com.example.slavinntube.User.entity.Impl.UserImpl;
 import com.example.slavinntube.User.repository.UserRepository;
 import com.example.slavinntube.User.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,31 +23,31 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<User> getAllUsers() {
+    public List<UserImpl> getAllUsers() {
         return userRepository.findAll();
     }
 
     @Override
-    public Optional<User> getById(UUID userId) {
+    public Optional<UserImpl> getById(UUID userId) {
         return Optional.of(userRepository.getReferenceById(userId));
     }
 
     @Override
-    public Optional<User> getByEmail(String email) {
+    public Optional<UserImpl> getByEmail(String email) {
         return Optional.ofNullable(userRepository.getByEmail(email));
     }
 
     @Override
-    public Optional<User> getByUsername(String username) {
+    public Optional<UserImpl> getByUsername(String username) {
         return Optional.ofNullable(userRepository.getByUsername(username));
     }
     @Override
-    public User saveUser(User user) {
+    public UserImpl saveUser(UserImpl user) {
         return userRepository.save(user);
     }
 
     @Override
-    public User updateUser(User user) {
+    public UserImpl updateUser(UserImpl user) {
         return userRepository.save(user);
     }
 

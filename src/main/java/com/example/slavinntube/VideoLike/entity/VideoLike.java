@@ -1,7 +1,7 @@
 package com.example.slavinntube.VideoLike.entity;
 
 
-import com.example.slavinntube.User.entity.User;
+import com.example.slavinntube.User.entity.Impl.UserImpl;
 import com.example.slavinntube.Video.entity.Video;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
@@ -32,7 +32,7 @@ public class VideoLike {
 
     @ManyToOne
     @JoinColumn(name = "userId")
-    private User user;
+    private UserImpl user;
 
     @ManyToOne
     @JoinColumn(name ="videoId")
@@ -42,7 +42,7 @@ public class VideoLike {
     public VideoLike() {
     }
 
-    public VideoLike(int like, User user, Video video) {
+    public VideoLike(int like, UserImpl user, Video video) {
         this.createdAt = new Date();
         this.like = like;
         this.user = user;
@@ -73,11 +73,11 @@ public class VideoLike {
         this.like = like;
     }
 
-    public User getUser() {
+    public UserImpl getUser() {
         return user;
     }
 
-    public void setUser(User userId) {
+    public void setUser(UserImpl userId) {
         this.user = userId;
     }
 

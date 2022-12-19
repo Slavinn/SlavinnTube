@@ -1,6 +1,6 @@
-package com.example.slavinntube.service;
+package com.example.slavinntube.User.service;
 
-import com.example.slavinntube.User.entity.User;
+import com.example.slavinntube.User.entity.Impl.UserImpl;
 import com.example.slavinntube.User.repository.UserRepository;
 import com.example.slavinntube.User.service.Impl.UserServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
@@ -24,7 +24,7 @@ import static org.mockito.Mockito.verify;
 
 @ExtendWith(MockitoExtension.class)
 @MockitoSettings(strictness = Strictness.LENIENT)
-class UserServiceImplTest {
+class UserImplServiceImplTest {
 
     @Mock
     private UserRepository userRepository;
@@ -32,20 +32,20 @@ class UserServiceImplTest {
     @InjectMocks
     private UserServiceImpl userService;
 
-    private User userOne;
+    private UserImpl userOne;
 
     @BeforeEach
     void setUp() {
-        this.userOne = new User("username", "email@address.com");
+        this.userOne = new UserImpl("username", "email@address.com");
     }
 
     @Test
     void getAllUsers() {
-        User userTwo = new User("username2", "email2@address.com");
+        UserImpl userTwo = new UserImpl("username2", "email2@address.com");
 
         given(userRepository.findAll()).willReturn(List.of(userOne,userTwo));
 
-        List<User> userList = userService.getAllUsers();
+        List<UserImpl> userList = userService.getAllUsers();
 
         assertNotNull(userList);
         assertThat(userList.size()).isEqualTo(2);
@@ -55,7 +55,7 @@ class UserServiceImplTest {
     void getById() {
         given(userRepository.getReferenceById(userOne.getId())).willReturn(userOne);
 
-        User savedUser = userService.getById(userOne.getId()).orElse(null);
+        UserImpl savedUser = userService.getById(userOne.getId()).orElse(null);
 
         assertNotNull(savedUser);
     }
@@ -64,7 +64,7 @@ class UserServiceImplTest {
     void getByEmail() {
         given(userRepository.getByEmail(userOne.getEmail())).willReturn(userOne);
 
-        User savedUser = userService.getByEmail(userOne.getEmail()).orElse(null);
+        UserImpl savedUser = userService.getByEmail(userOne.getEmail()).orElse(null);
 
         assertNotNull(savedUser);
     }
@@ -73,7 +73,7 @@ class UserServiceImplTest {
     void getByUsername() {
         given(userRepository.getByUsername(userOne.getUsername())).willReturn(userOne);
 
-        User savedUser = userService.getByUsername(userOne.getUsername()).orElse(null);
+        UserImpl savedUser = userService.getByUsername(userOne.getUsername()).orElse(null);
 
         assertNotNull(savedUser);
     }
@@ -85,7 +85,7 @@ class UserServiceImplTest {
 
         given(userRepository.save(userOne)).willReturn(userOne);
 
-        User savedUser = userService.saveUser(userOne);
+        UserImpl savedUser = userService.saveUser(userOne);
 
         assertNotNull(savedUser);
     }
@@ -96,7 +96,7 @@ class UserServiceImplTest {
         userOne.setEmail("newEmail@gmail.com");
         userOne.setUsername("newUsername1");
 
-        User updatedUser = userService.updateUser(userOne);
+        UserImpl updatedUser = userService.updateUser(userOne);
 
         assertThat(updatedUser.getUsername()).isEqualTo("newUsername1");
         assertThat(updatedUser.getEmail()).isEqualTo("newEmail@gmail.com");

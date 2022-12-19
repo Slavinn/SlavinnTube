@@ -1,11 +1,10 @@
 package com.example.slavinntube.Subscription.entity;
 
-import com.example.slavinntube.User.entity.User;
+import com.example.slavinntube.User.entity.Impl.UserImpl;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 
-import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -23,16 +22,16 @@ public class Subscription {
 
     @ManyToOne
     @JoinColumn(name ="subscriber")
-    private User subscriber;
+    private UserImpl subscriber;
 
     @ManyToOne
     @JoinColumn(name ="subscribed")
-    private User subscribedTo;
+    private UserImpl subscribedTo;
 
     public Subscription() {
     }
 
-    public Subscription(User subscriber, User subscribedTo) {
+    public Subscription(UserImpl subscriber, UserImpl subscribedTo) {
         this.subscriber = subscriber;
         this.subscribedTo = subscribedTo;
     }
@@ -45,19 +44,19 @@ public class Subscription {
         this.id = id;
     }
 
-    public User getSubscriber() {
+    public UserImpl getSubscriber() {
         return subscriber;
     }
 
-    public void setSubscriber(User subscriber) {
+    public void setSubscriber(UserImpl subscriber) {
         this.subscriber = subscriber;
     }
 
-    public User getSubscribedTo() {
+    public UserImpl getSubscribedTo() {
         return subscribedTo;
     }
 
-    public void setSubscribedTo(User subscriberTo) {
+    public void setSubscribedTo(UserImpl subscriberTo) {
         this.subscribedTo = subscriberTo;
     }
 }

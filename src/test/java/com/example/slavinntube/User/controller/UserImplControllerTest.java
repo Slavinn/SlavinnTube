@@ -1,6 +1,6 @@
-package com.example.slavinntube.controller;
+package com.example.slavinntube.User.controller;
 
-import com.example.slavinntube.User.entity.User;
+import com.example.slavinntube.User.entity.Impl.UserImpl;
 import com.example.slavinntube.User.repository.UserRepository;
 import com.example.slavinntube.User.service.Impl.UserServiceImpl;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -19,8 +19,6 @@ import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
-import java.util.List;
-
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.hamcrest.Matchers.hasSize;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -31,7 +29,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 @SpringBootTest
 //@Transactional
-class UserControllerTest {
+class UserImplControllerTest {
 
     @Autowired
     private JdbcTemplate jdbc;
@@ -91,14 +89,14 @@ class UserControllerTest {
 
     @Test
     void createUser() throws Exception{
-        User createUser = new User("testUser", "newUserEmail@gmail.com");
+        UserImpl createUser = new UserImpl("testUser", "newUserEmail@gmail.com");
 
         // How to parse a linkedhashmap from responseentity
 
-//        mockMvc.perform(post("/api/v1/users")
-//                .contentType(APPLICATION_JSON_UTF8)
-//                .content(objectMapper.writeValueAsString(createUser)))
-//                .andExpect(status().isCreated())
+        mockMvc.perform(post("/api/v1/users")
+                .contentType(APPLICATION_JSON_UTF8)
+                .content(objectMapper.writeValueAsString(createUser)))
+                .andExpect(status().isCreated());
 //                .andExpect(jsonPath("$", );
 
     }
